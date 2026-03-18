@@ -8,7 +8,7 @@ This service accepts either raw document text or a base64-encoded PDF, extracts 
 
 ## Overview
 
-The backend is designed to support an estate document analysis workflow for advisors or internal users. Its main job is to convert unstructured estate planning documents into structured JSON that can be rendered in a frontend application for user interaction and 
+The backend supports an estate document analysis workflow for advisors and internal users. Its primary function is to transform unstructured estate planning documents into structured JSON that can be displayed in the frontend and used by downstream systems.
 
 ### Core capabilities
 - Accept raw text or PDF input
@@ -24,7 +24,7 @@ The backend is designed to support an estate document analysis workflow for advi
 ## Architecture
 
 ```text
-Client / Frontend
+User / Frontend
         ↓
 API Gateway or Lambda Function URL
         ↓
@@ -380,7 +380,7 @@ If you package this as a Lambda deployment artifact, make sure these dependencie
 ## Local Development Notes
 
 To run similar logic locally, you would need:
-- Python 3.x
+- Python 3.12
 - AWS credentials configured with Bedrock access
 - access to the target Bedrock model in `us-east-1`
 
@@ -431,18 +431,6 @@ A consistent response structure simplifies frontend rendering and reduces UI err
 - The service assumes Bedrock returns reasonably well-formed JSON.
 - Long documents may result in multiple Bedrock calls and increased latency.
 
----
-
-## Possible Improvements
-
-- Add OCR support for scanned PDFs
-- Move model ID and chunk size into environment variables
-- Add stronger validation with JSON Schema or Pydantic
-- Add structured logging and request tracing
-- Add metrics for chunk counts, latency, and parse failures
-- Add authentication and authorization if exposed publicly
-- Add unit tests for merge, normalization, and deduplication logic
-- Return explicit CORS headers if required by the deployment environment
 
 ---
 
